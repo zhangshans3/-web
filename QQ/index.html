@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>denglu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <script src="js/jquery-2.2.2.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <style type="text/css">
+    	#page-1{
+    		background-image: url(img/288c39d01daf6f9241187e25298ab9f9_big.gif);  		   		
+    	}
+    	#page-2{
+    		background-image: url(img/288c39d01daf6f9241187e25298ab9f9_big.gif);    		
+    	}
+    	#img{
+    		margin-top: 40%;
+    		text-align: center;
+		}
+    	
+    </style>
+
+    <!--<script>
+ 
+	$('#btn').click(function(){
+		var name=$('#num').val();
+ 		var ps=$('#pass1').val();
+		$.ajax({
+			type:'get',
+			url:'http://datainfo.duapp.com/shopdata/userinfo.php',
+			data:{status:'register',userID:name,password:ps},
+			
+			success:function(data){
+				if(data == 0){
+					alert('用户名已被使用，请重新命名');
+				}
+				else if(data == 2){
+					alert('数据库错误');
+				}
+				else{
+					alert("昵称：" + $('#num').val()+ "密码："+ $('#pass1').val());
+					$(location).prop('href', '#page-2');
+				}
+		
+			}
+
+		})
+
+	})
+	
+	
+</script>-->
+
+</head>
+<body>
+    <div data-role="page" id="page-1">
+    	<div id="img" >
+    		<img src="img/qq.jpg" style="height: 125px;width: 125px;border-radius:50%;"/>
+    	</div>
+        <div data-role="content">
+            <form method="post" action="demoform.asp">
+                <label for="fname" class="ui-hidden-accessible"></label>
+                <input type="text" name="fname" id="num" class="fname" placeholder="请输入账号" >
+                <input type="password" name="fname" id="pass1" class="fname" placeholder="请输入密码" >
+                <input type="password" name="fname" id="pass2"  class="fname" placeholder="请确认密码" >
+               <input type="button"  value="注册" id="btn">
+            </form>
+        </div>
+    </div> 
+    
+     
+    
+    
+</body>    
+    <script >
+    	$('#btn').click(function(){
+    		var num=$("#num").val();
+    		var pass1=$("#pass1").val();
+    		var pass2=$("#pass2").val();
+
+		 $.ajax({
+		 	type:'get',
+		 	url:' http://datainfo.duapp.com/shopdata/userinfo.php',
+			data:{
+				status:"register",
+				userID:num,
+				password:pass1},
+		 	
+		 	success:function(data){
+		 		if(pass1==pass2){
+		 			if(data==0){alert("该用户名已被注册");}
+		 			else if(data==1){
+		 				alert("注册成功");
+		 				$(location).prop('href', 'denglu.html');
+		 			}
+		 			else{alert("数据库错误");}
+		 		}else{
+		 			alert("两次输入密码不一致")
+		 		}
+			}
+		 })
+	 })
+    </script>
+</html>
